@@ -113,6 +113,21 @@ const Icon = ({ name, size = 26, color = "currentColor" }) => {
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>
       );
+    case "menu":
+      return (
+        <svg {...common}>
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      );
+    case "stethoscope":
+      return (
+        <svg {...common}>
+          <path d="M5 4h1a2 2 0 0 1 2 2v4a4 4 0 0 0 8 0V6a2 2 0 0 1 2-2h1" />
+          <path d="M8 14v1a5.5 5.5 0 0 0 5.5 5.5h.5a5.5 5.5 0 0 0 5-5.5v-3" />
+          <circle cx="19" cy="10.5" r="2.5" />
+          <path d="M18 10.5h2" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -122,13 +137,62 @@ const Icon = ({ name, size = 26, color = "currentColor" }) => {
    DATA
 --------------------------------------------------------- */
 const SERVICES = [
-  { icon: "home", label: "Home Treatment" },
-  { icon: "pulse", label: "BP Checkup" },
-  { icon: "droplet", label: "Sugar Level Checkup" },
-  { icon: "cross", label: "Medicine Store" },
-  { icon: "device", label: "Medical Equipment" },
-  { icon: "bandage", label: "Wound Dressing" },
-  { icon: "baby", label: "Mother & Baby Care" },
+  {
+    icon: "home",
+    label: "Home Treatment",
+    tag: "Nurse Visits",
+    desc: "Personalized routine medical treatment and monitoring in the comfort of your home.",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Registered nurse treating a patient during a home visit",
+  },
+  {
+    icon: "pulse",
+    label: "BP Checkup",
+    tag: "Vitals & Heart",
+    desc: "Rapid, accurate blood pressure testing, heart health monitoring & vitals tracking.",
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Nurse checking blood pressure and listening with a stethoscope",
+  },
+  {
+    icon: "droplet",
+    label: "Sugar Level Checkup",
+    tag: "Diabetes Care",
+    desc: "Fasting and random blood glucose testing with immediate, clear guidance.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Blood glucose monitoring equipment and diabetes checkup",
+  },
+  {
+    icon: "cross",
+    label: "Medicine Store",
+    tag: "Pharmacy",
+    desc: "Essential prescription medication and trusted over-the-counter remedies dispensed.",
+    image: "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Shelves of authentic medicines at Kedam Chemist",
+  },
+  {
+    icon: "device",
+    label: "Medical Equipment",
+    tag: "Diagnostics",
+    desc: "High-grade BP apparatus, digital glucometers, thermometers and scales.",
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Clinical medical diagnostics and healthcare monitoring equipment",
+  },
+  {
+    icon: "bandage",
+    label: "Wound Dressing",
+    tag: "Sterile Care",
+    desc: "Sterile wound cleaning, postoperative dressing and compassionate healing care.",
+    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Sterile clinical care and nursing wound dressing",
+  },
+  {
+    icon: "baby",
+    label: "Mother & Baby Care",
+    tag: "Pediatrics",
+    desc: "Nourishment, maternity care pads, gentle infant essentials and toiletries.",
+    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=600&q=80",
+    imageAlt: "Loving mother and healthy baby essentials care",
+  },
 ];
 
 const SERVICE_DETAILS = [
@@ -138,6 +202,8 @@ const SERVICE_DETAILS = [
     body:
       "A registered nurse comes to you for routine treatment and monitoring, so you don't have to sit in a queue when you're unwell.",
     points: ["Nurse-led home visits", "Booked by phone, same-day where possible", "Suited to elderly and post-surgery patients"],
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80",
+    imageAlt: "Nurse speaking with a patient at home",
   },
   {
     icon: "pulse",
@@ -145,6 +211,8 @@ const SERVICE_DETAILS = [
     body:
       "Quick, accurate blood pressure readings for anyone managing hypertension or checking in on their heart health.",
     points: ["Walk-in or home visit", "Reading explained in plain language", "Regular monitoring plans available"],
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=700&q=80",
+    imageAlt: "Nurse checking a patient's blood pressure",
   },
   {
     icon: "droplet",
@@ -152,6 +220,8 @@ const SERVICE_DETAILS = [
     body:
       "Blood glucose testing for diabetic and pre-diabetic clients, with guidance on what the numbers mean for daily life.",
     points: ["Fasting or random glucose tests", "Result recorded for your next visit", "Referral advice when needed"],
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=700&q=80",
+    imageAlt: "Healthcare professional preparing a health check",
   },
   {
     icon: "bandage",
@@ -159,6 +229,8 @@ const SERVICE_DETAILS = [
     body:
       "Wound dressing and recovery support after surgery, handled with the same care as a hospital ward — at home.",
     points: ["Sterile wound dressing", "Healing progress checked visit to visit", "Guidance for family caregivers"],
+    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=700&q=80",
+    imageAlt: "Nurse providing careful home care",
   },
 ];
 
@@ -167,30 +239,48 @@ const PRODUCTS = [
     key: "medicine",
     icon: "cross",
     title: "Medicine Store",
+    category: "Pharmacy essentials",
     blurb: "Prescription and over-the-counter medicines, dispensed with proper guidance.",
     items: ["Prescription medicine", "Over-the-counter drugs", "Common household remedies"],
+    availability: "Ask what is in stock",
     image:
       "https://images.unsplash.com/photo-1696861286643-341a8d7a79e9?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Shelves of medicine at Kedam Chemist",
+    gallery: [
+      "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=900&q=80",
+    ],
   },
   {
     key: "equipment",
     icon: "device",
     title: "Medical Equipment",
+    category: "Monitoring at home",
     blurb: "Take health monitoring home with equipment sold and explained in person.",
     items: ["BP apparatus", "Glucometers", "Weighing scales"],
+    availability: "Guidance included",
     image:
       "https://images.unsplash.com/photo-1624625021542-41a4ff97c025?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Close-up of diabetes monitoring equipment",
+    gallery: [
+      "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=900&q=80",
+    ],
   },
   {
     key: "baby",
     icon: "baby",
     title: "Mother & Baby",
+    category: "Family essentials",
     blurb: "Everyday essentials for mother and child, always in stock.",
-    items: ["Baby wears", "Pads", "Wipes"],
-    image: null,
-    imageAlt: "",
+    items: ["Baby care", "Maternity pads", "Wipes and toiletries"],
+    availability: "Everyday essentials",
+    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Mother holding a baby",
+    gallery: [
+      "https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=900&q=80",
+    ],
   },
 ];
 
@@ -205,7 +295,29 @@ function whatsappUrl(message) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-function Reveal({ children, className = "" }) {
+function KedamMark({ size = 32 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      {/* Binaural headset */}
+      <path d="M14 10 C14 16 17 21 24 23 C31 21 34 16 34 10" stroke="#FFFFFF" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="14" cy="10" r="2.2" fill="#E8A33D"/>
+      <circle cx="34" cy="10" r="2.2" fill="#E8A33D"/>
+      {/* Tension bridge */}
+      <path d="M17 16 Q24 18 31 16" stroke="#E8A33D" strokeWidth="2" strokeLinecap="round"/>
+      <circle cx="24" cy="23" r="2.2" fill="#E8A33D"/>
+      {/* Flexible tubing */}
+      <path d="M24 23 V27 C24 34 18 38 12 38 C7 38 5 34 5 29 C5 23 9 19 16 19 H28" stroke="#DCECE2" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Chestpiece with ECG heartbeat pulse */}
+      <g transform="translate(34, 19)">
+        <circle cx="0" cy="0" r="6.5" fill="#0A372E" stroke="#E8A33D" strokeWidth="2.2"/>
+        <circle cx="0" cy="0" r="3.5" fill="#DCECE2"/>
+        <path d="M-2.2 0 H-1 L-0.4 -1.6 L0.4 1.6 L1 -0.8 L1.4 0 H2.2" stroke="#0E5245" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </g>
+    </svg>
+  );
+}
+
+function Reveal({ children, className = "", style }) {
   const ref = React.useRef(null);
 
   useEffect(() => {
@@ -221,7 +333,7 @@ function Reveal({ children, className = "" }) {
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={ref} className={`reveal ${className}`}>{children}</div>;
+  return <div ref={ref} className={`reveal ${className}`} style={style}>{children}</div>;
 }
 
 /* ---------------------------------------------------------
@@ -241,15 +353,33 @@ function SectionHeading({ kicker, title, lede }) {
   );
 }
 
-function Marquee() {
+function Marquee({ onNavigate }) {
   const loop = [...SERVICES, ...SERVICES];
   return (
     <div className="marquee" aria-label="Services offered">
       <div className="marquee__track">
         {loop.map((s, i) => (
-          <div className="marquee__pill" key={i}>
-            <Icon name={s.icon} size={20} color="#0E5245" />
-            <span>{s.label}</span>
+          <div
+            className="marquee__card"
+            key={i}
+            onClick={() => onNavigate && onNavigate("Services")}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="marquee__card-media">
+              <img src={s.image} alt={s.imageAlt} loading="lazy" />
+              <span className="marquee__card-tag">{s.tag}</span>
+              <div className="marquee__card-badge">
+                <Icon name={s.icon} size={18} color="#0E5245" />
+              </div>
+            </div>
+            <div className="marquee__card-body">
+              <h3 className="marquee__card-title">{s.label}</h3>
+              <p className="marquee__card-desc">{s.desc}</p>
+              <span className="marquee__card-link">
+                Explore service <Icon name="arrow" size={13} />
+              </span>
+            </div>
           </div>
         ))}
       </div>
@@ -278,6 +408,77 @@ function Home({ onNavigate }) {
   return (
     <>
       <section className="hero">
+        {/* Purple Section: Doctor's heartbeat check tool (Stethoscope showcase) */}
+        <div className="hero__tool-showcase">
+          <div className="hero__tool-stage">
+            <div className="hero__tool-aura hero__tool-aura--1" />
+            <div className="hero__tool-aura hero__tool-aura--2" />
+            <svg
+              className="hero__stethoscope-svg"
+              viewBox="0 0 170 180"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="Doctor's Stethoscope for heartbeat and vitals"
+            >
+              <defs>
+                <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#eef4f1" />
+                  <stop offset="50%" stopColor="#ffffff" />
+                  <stop offset="100%" stopColor="#b4c7be" />
+                </linearGradient>
+                <linearGradient id="tubeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#0E5245" />
+                  <stop offset="100%" stopColor="#08372e" />
+                </linearGradient>
+              </defs>
+
+              {/* Binaural earpieces */}
+              <path d="M48 24 C48 50 64 74 85 82 C106 74 122 50 122 24" stroke="url(#metalGrad)" strokeWidth="6.5" strokeLinecap="round" strokeLinejoin="round" />
+              {/* Ear tips */}
+              <ellipse cx="48" cy="23" rx="5.5" ry="4.5" fill="#0A372E" />
+              <ellipse cx="122" cy="23" rx="5.5" ry="4.5" fill="#0A372E" />
+              {/* Tension spring bar */}
+              <path d="M58 44 Q85 52 112 44" stroke="url(#metalGrad)" strokeWidth="3.6" strokeLinecap="round" />
+              {/* Y-junction connector */}
+              <circle cx="85" cy="82" r="5" fill="#E8A33D" />
+
+              {/* Flexible tubing */}
+              <path d="M85 82 V102 C85 134 62 152 38 152 C20 152 14 136 14 120 C14 100 28 85 56 85 H104" stroke="url(#tubeGrad)" strokeWidth="8.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M85 85 V102 C85 132 63 149 40 149 C24 149 17 136 17 120 C17 102 29 88 56 88 H104" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+
+              {/* Chestpiece (Bell and Diaphragm) with animated ECG heartbeat pulse */}
+              <g transform="translate(126, 85)">
+                <circle cx="0" cy="0" r="25" fill="#0A372E" stroke="#E8A33D" strokeWidth="4" />
+                <circle cx="0" cy="0" r="18" fill="#0E5245" stroke="#ffffff" strokeWidth="1.2" />
+                <circle cx="0" cy="0" r="15" fill="#DCECE2" />
+                {/* Heartbeat pulse rhythm inside diaphragm */}
+                <path className="heartbeat-pulse-path" d="M-11 0 H-6 L-3.5 -7 L0 7 L2.5 -4 L5 0 H11" stroke="#0E5245" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              </g>
+            </svg>
+          </div>
+
+          <div className="hero__tool-info">
+            <div className="hero__tool-heading">
+              <span className="hero__tool-icon">🩺</span>
+              <div>
+                <strong>Heartbeat &amp; Vitals Auscultation</strong>
+                <small>Stethoscope diagnostics by a registered nurse</small>
+              </div>
+            </div>
+            <div className="hero__tool-vitals">
+              <span className="vitals-heart">♥</span>
+              <span className="vitals-bpm">72 BPM</span>
+              <span className="vitals-status">Steady Heartbeat</span>
+            </div>
+            <p className="hero__tool-text">
+              Full chest auscultation, blood pressure testing and cardiovascular monitoring done in-store or at your home.
+            </p>
+            <button className="hero__tool-action" onClick={() => onNavigate("Services")}>
+              Book vitals check <Icon name="arrow" size={14} />
+            </button>
+          </div>
+        </div>
+
         <div className="hero__text">
           <h1>
             Care that comes to your door,
@@ -325,7 +526,7 @@ function Home({ onNavigate }) {
         </div>
       </section>
 
-      <Marquee />
+      <Marquee onNavigate={onNavigate} />
 
       <section className="band">
         <div className="band__photo">
@@ -356,11 +557,11 @@ function Home({ onNavigate }) {
           <p>Speak with the pharmacy directly — no automated menus.</p>
         </div>
         <div className="closer__actions">
-          <a className="btn btn--solid btn--light" href="tel:07038045008">
-            <Icon name="phone" size={17} /> 0703 804 5008
+          <a className="btn btn--whatsapp" href={whatsappUrl("Hello Kedam Chemist, I need something checked or delivered today.")} target="_blank" rel="noreferrer">
+            <Icon name="mail" size={17} /> Message on WhatsApp
           </a>
-          <a className="btn btn--outline-light" href="tel:09132392816">
-            0913 239 2816
+          <a className="btn btn--outline-light closer__call" href="tel:09132392816">
+            <Icon name="phone" size={17} /> Call 0913 239 2816
           </a>
         </div>
       </section>
@@ -380,8 +581,9 @@ function Services({ onNavigate }) {
         {SERVICE_DETAILS.map((s) => (
           <Reveal className="service-card" key={s.title}>
             <div className="service-card__icon">
-              <Icon name={s.icon} size={26} color="#0E5245" />
+              <img src={s.image} alt={s.imageAlt} />
             </div>
+            <div className="service-card__badge"><Icon name={s.icon} size={20} color="#0E5245" /></div>
             <h3>{s.title}</h3>
             <p>{s.body}</p>
             <ul>
@@ -403,6 +605,18 @@ function Services({ onNavigate }) {
 }
 
 function Products() {
+  const [activeImages, setActiveImages] = useState({});
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveImages((current) => PRODUCTS.reduce((next, product) => ({
+        ...next,
+        [product.key]: ((current[product.key] || 0) + 1) % (product.gallery?.length || 1),
+      }), {}));
+    }, 4200);
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <section className="page">
       <SectionHeading
@@ -411,18 +625,23 @@ function Products() {
         lede="Everything on the shelf is explained before it leaves the counter."
       />
       <div className="product-list">
-        {PRODUCTS.map((p) => (
-          <Reveal className="product-row" key={p.key}>
+        {PRODUCTS.map((p, index) => (
+          <Reveal className="product-row" key={p.key} style={{ "--card-delay": `${index * 120}ms` }}>
             <div className="product-row__media">
               {p.image ? (
-                <img src={p.image} alt={p.imageAlt} />
+                <img src={p.gallery?.[activeImages[p.key] || 0] || p.image} alt={p.imageAlt} />
               ) : (
                 <div className="product-row__icon">
                   <Icon name={p.icon} size={44} color="#0E5245" />
                 </div>
               )}
+                <span className="product-row__counter">{(activeImages[p.key] || 0) + 1} / {p.gallery?.length || 1}</span>
             </div>
             <div className="product-row__text">
+                <div className="product-row__meta">
+                  <span>{p.category}</span>
+                  <span className="product-row__availability">{p.availability}</span>
+                </div>
               <div className="product-row__title">
                 <Icon name={p.icon} size={20} color="#E8A33D" />
                 <h3>{p.title}</h3>
@@ -435,6 +654,9 @@ function Products() {
                   </span>
                 ))}
               </div>
+              <a className="product-row__action" href={whatsappUrl(`Hello Kedam Chemist, please tell me what is available in ${p.title}.`)} target="_blank" rel="noreferrer">
+                Ask about this range <Icon name="arrow" size={15} />
+              </a>
             </div>
           </Reveal>
         ))}
@@ -642,19 +864,49 @@ export default function App() {
         .nav {
           position: sticky; top: 0; z-index: 40;
           display: flex; align-items: center; justify-content: space-between;
-          padding: 16px 6vw;
-          background: rgba(243,245,239,0.9);
-          backdrop-filter: blur(8px);
+          padding: 14px 5vw;
+          background: rgba(243,245,239,0.92);
+          backdrop-filter: blur(10px);
           border-bottom: 1px solid var(--line);
         }
-        .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; background: none; border: none; }
-        .brand__mark {
-          width: 34px; height: 34px; border-radius: 9px;
-          background: var(--deep); color: #fff;
-          display: flex; align-items: center; justify-content: center;
+        .brand {
+          display: flex; align-items: center; gap: 14px;
+          cursor: pointer; background: none; border: none; padding: 2px 0;
+          text-align: left;
         }
-        .brand__word { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.15rem; color: var(--ink); }
-        .brand__word small { display: block; font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: .62rem; letter-spacing: .04em; color: #5b6a62; }
+        .brand__mark {
+          width: 48px; height: 48px; border-radius: 14px;
+          background: linear-gradient(135deg, #0E5245 0%, #07332b 100%);
+          color: #fff; flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 8px 20px rgba(14,82,69,0.22);
+          border: 1.5px solid rgba(232,163,61,0.35);
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .brand:hover .brand__mark {
+          transform: scale(1.05);
+          box-shadow: 0 12px 24px rgba(14,82,69,0.32);
+        }
+        .brand__info {
+          display: flex; flex-direction: column; align-items: flex-start;
+        }
+        .brand__word {
+          font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.6rem;
+          color: var(--ink); line-height: 1.05; letter-spacing: -0.015em; display: block;
+        }
+        .brand__meta {
+          display: flex; align-items: center; gap: 7px; margin-top: 3px;
+        }
+        .brand__badge {
+          background: var(--mint); color: var(--deep);
+          font-family: 'Work Sans', sans-serif; font-size: 0.68rem; font-weight: 700;
+          padding: 2px 7px; border-radius: 6px; letter-spacing: 0.04em;
+          text-transform: uppercase; border: 1px solid rgba(14,82,69,0.16);
+        }
+        .brand__tagline {
+          font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 0.76rem;
+          letter-spacing: 0.05em; text-transform: uppercase; color: #43544c;
+        }
         .nav__links { display: flex; gap: 28px; }
         .nav__links button {
           background: none; border: none; cursor: pointer;
@@ -662,9 +914,13 @@ export default function App() {
           color: #445048; padding: 4px 0; border-bottom: 2px solid transparent;
         }
         .nav__links button.is-active { color: var(--deep); border-color: var(--accent); }
-        .nav__phone {
+        .nav__menu { display: none; align-items: center; gap: 7px; background: var(--paper-2); color: var(--deep); border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; font: 600 .84rem 'Work Sans', sans-serif; cursor: pointer; }
+        .mobile-menu { position: sticky; top: 73px; z-index: 35; display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 6vw; background: var(--paper-2); border-bottom: 1px solid var(--line); box-shadow: 0 12px 20px rgba(14,82,69,.08); }
+        .mobile-menu button { border: 0; background: var(--paper); color: var(--deep); border-radius: 999px; padding: 9px 14px; font: 600 .86rem 'Work Sans', sans-serif; cursor: pointer; }
+        .mobile-menu button.is-active { background: var(--deep); color: #fff; }
+        .kedam a.nav__phone {
           display: flex; align-items: center; gap: 8px;
-          background: var(--deep); color: #fff; padding: 9px 16px;
+          background: var(--deep); color: #fff; padding: 10px 18px;
           border-radius: 30px; text-decoration: none; font-size: .88rem; font-weight: 600;
           white-space: nowrap;
         }
@@ -686,17 +942,178 @@ export default function App() {
         .btn--whatsapp:hover { background: #1fbd5b; }
         .btn--light { }
         .btn--outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
+        .kedam a.btn--solid { color: #fff; }
+        .kedam a.btn--whatsapp { color: #073b25; }
+        .kedam a.btn--outline-light { color: #fff; }
         .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 26px 0 30px; }
 
         /* ---- HERO ---- */
         .hero {
-          display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px;
-          align-items: center; padding: 64px 6vw 40px; max-width: 1280px; margin: 0 auto;
+          display: grid; grid-template-columns: 320px 1.15fr 0.95fr; gap: 32px;
+          align-items: center; padding: 48px 5vw 36px; max-width: 1420px; margin: 0 auto;
         }
-        .hero h1 { font-size: clamp(2.1rem, 4vw, 3.1rem); }
-        .hero__sub { max-width: 46ch; }
-        .trust-strip { display: flex; gap: 22px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid var(--line); }
+        .hero h1 { font-size: clamp(2rem, 3.4vw, 2.9rem); line-height: 1.12; }
+        .hero__sub { max-width: 48ch; font-size: 0.96rem; }
+        .trust-strip { display: flex; gap: 18px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--line); }
         .trust-strip div { display: flex; align-items: center; gap: 7px; font-size: .82rem; font-weight: 600; color: #33413a; }
+
+        /* Purple section: Doctor's stethoscope showcase */
+        .hero__tool-showcase {
+          background: linear-gradient(165deg, #ffffff 0%, #f4faf6 55%, #e1efe7 100%);
+          border: 1.5px solid rgba(14, 82, 69, 0.18);
+          border-radius: 26px;
+          padding: 22px 20px;
+          box-shadow: 0 16px 36px rgba(14, 82, 69, 0.11);
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          position: relative;
+          overflow: hidden;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hero__tool-showcase:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 22px 44px rgba(14, 82, 69, 0.16);
+        }
+        .hero__tool-stage {
+          position: relative;
+          width: 100%;
+          height: 185px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: radial-gradient(circle at center, #ffffff 40%, #eaf4ee 100%);
+          border-radius: 20px;
+          border: 1px solid rgba(14, 82, 69, 0.1);
+          overflow: hidden;
+        }
+        .hero__tool-aura {
+          position: absolute;
+          border-radius: 50%;
+          pointer-events: none;
+        }
+        .hero__tool-aura--1 {
+          width: 130px;
+          height: 130px;
+          background: radial-gradient(circle, rgba(232, 163, 61, 0.18) 0%, transparent 70%);
+          top: 30px;
+          right: 15px;
+          animation: auraPulse 4s ease-in-out infinite alternate;
+        }
+        .hero__tool-aura--2 {
+          width: 160px;
+          height: 160px;
+          background: radial-gradient(circle, rgba(14, 82, 69, 0.12) 0%, transparent 70%);
+          bottom: -25px;
+          left: -15px;
+        }
+        @keyframes auraPulse {
+          from { transform: scale(0.9); opacity: 0.6; }
+          to { transform: scale(1.15); opacity: 1; }
+        }
+        .hero__stethoscope-svg {
+          width: 100%;
+          height: 100%;
+          max-height: 175px;
+          display: block;
+          position: relative;
+          z-index: 2;
+        }
+        .heartbeat-pulse-path {
+          stroke-dasharray: 40;
+          stroke-dashoffset: 40;
+          animation: heartbeatTrace 2.2s ease-in-out infinite;
+        }
+        @keyframes heartbeatTrace {
+          0% { stroke-dashoffset: 40; opacity: 0.3; }
+          40% { stroke-dashoffset: 0; opacity: 1; }
+          80%, 100% { stroke-dashoffset: -40; opacity: 0.3; }
+        }
+        .hero__tool-info {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .hero__tool-heading {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .hero__tool-icon {
+          font-size: 1.3rem;
+          line-height: 1;
+        }
+        .hero__tool-heading strong {
+          display: block;
+          font-family: 'Fraunces', serif;
+          font-size: 1.05rem;
+          color: var(--deep-2);
+          line-height: 1.2;
+        }
+        .hero__tool-heading small {
+          display: block;
+          font-size: 0.72rem;
+          color: #55665e;
+        }
+        .hero__tool-vitals {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          background: #ffffff;
+          border: 1px solid rgba(14, 82, 69, 0.14);
+          border-radius: 8px;
+          padding: 5px 10px;
+          width: fit-content;
+        }
+        .vitals-heart {
+          color: #c93b2b;
+          font-size: 0.95rem;
+          animation: heartbeatBoom 1.2s infinite;
+        }
+        @keyframes heartbeatBoom {
+          0%, 100% { transform: scale(1); }
+          15% { transform: scale(1.3); }
+          30% { transform: scale(1); }
+          45% { transform: scale(1.2); }
+        }
+        .vitals-bpm {
+          font-weight: 700;
+          font-size: 0.82rem;
+          color: var(--deep-2);
+        }
+        .vitals-status {
+          font-size: 0.72rem;
+          color: #61736a;
+          border-left: 1px solid #d4dfd9;
+          padding-left: 7px;
+        }
+        .hero__tool-text {
+          font-size: 0.82rem;
+          line-height: 1.45;
+          color: #3f4e46;
+          margin: 0;
+        }
+        .hero__tool-action {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          background: var(--deep);
+          color: #ffffff;
+          border: none;
+          border-radius: 999px;
+          padding: 9px 16px;
+          font-family: 'Work Sans', sans-serif;
+          font-weight: 600;
+          font-size: 0.84rem;
+          cursor: pointer;
+          margin-top: 4px;
+          transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .hero__tool-action:hover {
+          background: var(--deep-2);
+          transform: translateX(2px);
+        }
 
         .hero__art { position: relative; height: 380px; }
         .hero__cross {
@@ -717,17 +1134,126 @@ export default function App() {
         .hero__chip--a { bottom: 30px; left: -6px; }
         .hero__chip--b { top: 6px; right: -4px; }
 
-        /* ---- MARQUEE ---- */
-        .marquee { overflow: hidden; background: var(--deep); padding: 18px 0; margin-top: 12px; }
-        .marquee__track { display: flex; gap: 14px; width: max-content; animation: scrollRight 28s linear infinite; }
-        .marquee:hover .marquee__track { animation-play-state: paused; }
-        @keyframes scrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-        .marquee__pill {
-          display: flex; align-items: center; gap: 9px;
-          background: #fff; border-radius: 999px; padding: 10px 18px;
-          font-size: .86rem; font-weight: 600; color: var(--ink); white-space: nowrap;
+        /* ---- MARQUEE (Pink section: cards with images) ---- */
+        .marquee {
+          overflow: hidden;
+          background: linear-gradient(180deg, #072a23 0%, #0e5245 100%);
+          padding: 26px 0;
+          margin-top: 14px;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .marquee__pill svg { flex: none; }
+        .marquee__track {
+          display: flex;
+          gap: 20px;
+          width: max-content;
+          animation: scrollCards 38s linear infinite;
+        }
+        .marquee:hover .marquee__track {
+          animation-play-state: paused;
+        }
+        @keyframes scrollCards {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .marquee__card {
+          width: 270px;
+          flex: 0 0 270px;
+          background: #ffffff;
+          border-radius: 18px;
+          overflow: hidden;
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+          display: flex;
+          flex-direction: column;
+          cursor: pointer;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease;
+          text-align: left;
+        }
+        .marquee__card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 42px rgba(0, 0, 0, 0.32);
+        }
+        .marquee__card-media {
+          height: 140px;
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          background: var(--mint);
+        }
+        .marquee__card-media img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+        .marquee__card:hover .marquee__card-media img {
+          transform: scale(1.08);
+        }
+        .marquee__card-tag {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          padding: 4px 9px;
+          border-radius: 999px;
+          background: rgba(14, 82, 69, 0.88);
+          color: #ffffff;
+          font-size: 0.68rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          backdrop-filter: blur(4px);
+          box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .marquee__card-badge {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          width: 36px;
+          height: 36px;
+          border-radius: 11px;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(4px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+          border: 1px solid rgba(14, 82, 69, 0.12);
+        }
+        .marquee__card-body {
+          padding: 14px 16px 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          flex: 1;
+        }
+        .marquee__card-title {
+          font-family: 'Fraunces', serif;
+          font-size: 1.08rem;
+          font-weight: 600;
+          color: var(--ink);
+          margin: 0;
+          line-height: 1.25;
+        }
+        .marquee__card-desc {
+          font-size: 0.78rem;
+          line-height: 1.42;
+          color: #485950;
+          margin: 2px 0 8px;
+          flex: 1;
+        }
+        .marquee__card-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: var(--deep);
+        }
+        .marquee__card:hover .marquee__card-link {
+          color: var(--accent-2);
+        }
 
         /* ---- BAND ---- */
         .band {
@@ -759,11 +1285,14 @@ export default function App() {
 
         /* ---- SERVICES ---- */
         .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal { opacity: 0; transform: translateY(28px) scale(.985); transition: opacity .65s ease var(--card-delay, 0ms), transform .65s cubic-bezier(.2,.8,.2,1) var(--card-delay, 0ms); }
         .reveal.is-visible { opacity: 1; transform: translateY(0); }
         .service-card { background: var(--paper-2); border: 1px solid var(--line); border-radius: 22px; padding: 28px; transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
         .service-card:hover { border-color: rgba(14,82,69,.42); box-shadow: 0 18px 36px rgba(14,82,69,.11); transform: translateY(-5px); }
-        .service-card__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--mint); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+        .service-card__icon { width: 100%; height: 132px; border-radius: 16px; background: var(--mint); overflow: hidden; margin-bottom: 16px; }
+        .service-card__icon img { width: 100%; height: 100%; object-fit: cover; display: block; animation: imageDrift 9s ease-in-out infinite alternate; }
+        .service-card__badge { width: 42px; height: 42px; border-radius: 13px; background: var(--mint); display: flex; align-items: center; justify-content: center; margin-top: -36px; margin-left: 14px; position: relative; border: 3px solid var(--paper-2); }
+        @keyframes imageDrift { from { transform: scale(1.02) translate3d(-1%, 0, 0); } to { transform: scale(1.1) translate3d(1%, -2%, 0); } }
         .service-card ul { margin-top: 14px; }
         .service-card li { font-size: .88rem; padding: 6px 0 6px 16px; position: relative; color: #435049; }
         .service-card li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
@@ -772,16 +1301,25 @@ export default function App() {
 
         /* ---- PRODUCTS ---- */
         .product-list { display: flex; flex-direction: column; gap: 26px; }
-        .product-row { display: grid; grid-template-columns: 280px 1fr; gap: 30px; align-items: center; background: var(--paper-2); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
-        .product-row:hover { border-color: rgba(14,82,69,.42); box-shadow: 0 18px 36px rgba(14,82,69,.11); transform: translateY(-4px); }
+        .product-row { position: relative; display: grid; grid-template-columns: 280px 1fr; gap: 30px; align-items: center; background: var(--paper-2); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; transition: border-color .3s ease, box-shadow .3s ease, transform .3s cubic-bezier(.2,.8,.2,1); }
+        .product-row::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.28) 48%, transparent 70%); transform: translateX(-120%); transition: transform .8s ease; }
+        .product-row:hover { border-color: rgba(14,82,69,.42); box-shadow: 0 22px 42px rgba(14,82,69,.16); transform: translateY(-8px) rotateX(1deg); }
+        .product-row:hover::after { transform: translateX(120%); }
         .product-row__media { height: 190px; background: var(--mint); }
-        .product-row__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .product-row__media { position: relative; overflow: hidden; }
+        .product-row__media img { width: 100%; height: 100%; object-fit: cover; display: block; animation: productPan 7s ease-in-out infinite alternate; transition: opacity .35s ease, transform .7s ease; }
+        .product-row__counter { position: absolute; right: 12px; bottom: 12px; padding: 5px 9px; border-radius: 999px; background: rgba(10,55,46,.82); color: #fff; font-size: .72rem; font-weight: 700; }
+        @keyframes productPan { from { transform: scale(1.02); } to { transform: scale(1.1) translateX(2%); } }
         .product-row__icon { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
         .product-row__text { padding: 20px 26px 20px 0; }
+        .product-row__meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; color: var(--accent-2); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+        .product-row__availability { color: var(--deep); text-transform: none; letter-spacing: 0; white-space: nowrap; }
         .product-row__title { display: flex; align-items: center; gap: 10px; }
         .product-row__title h3 { margin: 0; }
         .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
         .chip { background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: .8rem; font-weight: 600; color: var(--deep-2); }
+        .product-row__action { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; color: var(--deep); font-size: .84rem; font-weight: 700; text-decoration: none; }
+        .product-row__action:hover { color: var(--accent-2); }
 
         /* ---- ABOUT ---- */
         .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 32px; }
@@ -825,17 +1363,45 @@ export default function App() {
         .footer__cols a { color: #cfd8d2; text-decoration: none; display: block; font-size: .88rem; margin-bottom: 8px; }
         .footer__bottom { display: flex; justify-content: space-between; padding-top: 18px; font-size: .78rem; color: #8a958e; flex-wrap: wrap; gap: 8px; }
 
+        @media (max-width: 1180px) {
+          .hero {
+            grid-template-columns: 1fr 1fr;
+          }
+          .hero__tool-showcase {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 20px;
+            align-items: center;
+          }
+          .hero__tool-stage {
+            height: 160px;
+          }
+        }
         @media (max-width: 880px) {
           .nav__links { display: none; }
+          .nav__menu { display: inline-flex; }
           .hero, .band, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+          .hero__tool-showcase {
+            grid-column: span 1;
+            display: flex;
+            flex-direction: column;
+          }
+          .hero__tool-stage {
+            height: 180px;
+          }
           .service-grid { grid-template-columns: 1fr; }
           .product-row { grid-template-columns: 1fr; }
           .product-row__media { height: 200px; }
           .booking-panel { grid-template-columns: 1fr; }
         }
         @media (max-width: 520px) {
-          .nav { padding: 13px 4vw; }
-          .nav__phone { padding: 9px 11px; font-size: .78rem; }
+          .nav { padding: 12px 4vw; }
+          .brand__mark { width: 42px; height: 42px; border-radius: 12px; }
+          .brand__word { font-size: 1.3rem; }
+          .brand__tagline { font-size: 0.68rem; }
+          .brand__badge { display: none; }
+          .nav__phone { padding: 8px 12px; font-size: .78rem; }
           .hero, .band, .page { padding-left: 4vw; padding-right: 4vw; }
           .hero__art { height: 300px; }
           .booking-panel { padding: 22px; }
@@ -844,13 +1410,16 @@ export default function App() {
       `}</style>
 
       <header className="nav">
-        <button className="brand" onClick={() => goto("Home")}>
+        <button className="brand" onClick={() => goto("Home")} aria-label="Kedam Chemist Homepage">
           <span className="brand__mark">
-            <Icon name="cross" size={19} />
+            <KedamMark size={32} />
           </span>
-          <span className="brand__word">
-            Kedam Chemist
-            <small>Multi-Purpose Store</small>
+          <span className="brand__info">
+            <span className="brand__word">Kedam Chemist</span>
+            <span className="brand__meta">
+              <span className="brand__badge">Nurse-Led</span>
+              <span className="brand__tagline">Multi-Purpose Store</span>
+            </span>
           </span>
         </button>
         <nav className="nav__links">
@@ -860,10 +1429,16 @@ export default function App() {
             </button>
           ))}
         </nav>
+        <button className="nav__menu" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Open navigation menu">
+          <Icon name="menu" size={20} /> <span>Menu</span>
+        </button>
         <a className="nav__phone" href="tel:07038045008">
           <Icon name="phone" size={15} /> 0703 804 5008
         </a>
       </header>
+      {menuOpen && <nav className="mobile-menu" aria-label="Mobile navigation">
+        {NAV.map((n) => <button key={n} className={page === n ? "is-active" : ""} onClick={() => goto(n)}>{n}</button>)}
+      </nav>}
 
       {page === "Home" && <Home onNavigate={goto} />}
       {page === "Services" && <Services onNavigate={goto} />}
@@ -899,7 +1474,7 @@ export default function App() {
         </div>
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} Kedam Chemist and Multi-Purpose Store</span>
-          <span>kedam.com.ng · nursekedam.com.ng</span>
+          <span>nursekedem.com.ng</span>
         </div>
       </footer>
     </div>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="13" fill="#0E5245"/>
+  <!-- Earpieces & binaural headset -->
+  <path d="M14 10 C14 16 17 21 24 23 C31 21 34 16 34 10" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Ear tips -->
+  <circle cx="14" cy="10" r="2.2" fill="#E8A33D"/>
+  <circle cx="34" cy="10" r="2.2" fill="#E8A33D"/>
+  <!-- Tension bridge between binaural tubes -->
+  <path d="M17 16 Q24 18 31 16" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Y-tube connector -->
+  <circle cx="24" cy="23" r="2" fill="#E8A33D"/>
+  <!-- Flexible tubing -->
+  <path d="M24 23 V27 C24 34 18 38 12 38 C7 38 5 34 5 29 C5 23 9 19 16 19 H28" stroke="#DCECE2" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Chestpiece (Diaphragm and Bell) -->
+  <g transform="translate(34, 19)">
+    <circle cx="0" cy="0" r="6.5" fill="#0A372E" stroke="#E8A33D" stroke-width="2.2"/>
+    <circle cx="0" cy="0" r="3.5" fill="#DCECE2"/>
+    <!-- ECG pulse line -->
+    <path d="M-2.2 0 H-1 L-0.4 -1.6 L0.4 1.6 L1 -0.8 L1.4 0 H2.2" stroke="#0E5245" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
