@@ -243,12 +243,11 @@ const PRODUCTS = [
     blurb: "Prescription and over-the-counter medicines, dispensed with proper guidance.",
     items: ["Prescription medicine", "Over-the-counter drugs", "Common household remedies"],
     availability: "Ask what is in stock",
-    image:
-      "https://images.unsplash.com/photo-1696861286643-341a8d7a79e9?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Shelves of medicine at Kedam Chemist",
+    image: "/medicine-store-main.jpg",
+    imageAlt: "Shelves of medicine at Kedam Chemist Patent Store",
     gallery: [
+      "/medicine-store-main.jpg",
       "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=900&q=80",
     ],
   },
   {
@@ -278,8 +277,26 @@ const PRODUCTS = [
     image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Mother holding a baby",
     gallery: [
+      "/mother-baby-calendar.jpg",
       "https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=900&q=80",
+    ],
+  },
+  {
+    key: "wellness",
+    icon: "droplet",
+    title: "Natural Wellness",
+    category: "Herbal remedies",
+    blurb: "Natural solutions for chronic conditions and wellness support.",
+    items: ["Janechuks Mixed Spices", "Women's Health Formula", "High BP Crusher", "Belly Shrinking Spices"],
+    availability: "100% Natural products",
+    image: "/janechuks-mixed-spices.jpg",
+    imageAlt: "Janechuks Mixed Spices for women's health",
+    gallery: [
+      "/janechuks-mixed-spices.jpg",
+      "/janechuks-womens-health.jpg",
+      "/high-bp-crusher.jpg",
+      "/belly-shrinking-spices.jpg",
     ],
   },
 ];
@@ -672,7 +689,7 @@ function About() {
       <div className="about-grid">
         <div className="about-card">
           <div className="about-card__avatar">
-            <Icon name="shield" size={34} color="#0E5245" />
+            <img src="/princess-adeyemi.jpg" alt="Princess Adeyemi, Registered Nurse & Founder" />
           </div>
           <h3>Princess Adeyemi, S.O.K</h3>
           <p className="about-card__role">Registered Nurse &amp; Founder</p>
@@ -680,7 +697,9 @@ function About() {
             Princess Adeyemi founded Kedam Chemist and Multi-Purpose Store to bring
             proper nursing care into the neighbourhood, not just medicine over a
             counter. Every checkup, dressing and consultation carries her
-            professional oversight.
+            professional oversight. With years of clinical experience and a passion
+            for community health, she ensures every patient receives personalized,
+            compassionate care.
           </p>
         </div>
         <div className="values">
@@ -1324,7 +1343,8 @@ export default function App() {
         /* ---- ABOUT ---- */
         .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 32px; }
         .about-card, .values { background: var(--paper-2); border: 1px solid var(--line); border-radius: 24px; padding: 30px; }
-        .about-card__avatar { width: 60px; height: 60px; border-radius: 16px; background: var(--mint); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+        .about-card__avatar { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 3px solid var(--accent-2); }
+        .about-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
         .about-card__role { color: var(--accent-2); font-weight: 700; font-size: .85rem; margin-top: -8px; }
         .values__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 18px; }
         .values__grid div { display: flex; flex-direction: column; gap: 6px; }
