@@ -298,6 +298,33 @@ const PRODUCTS = [
   },
 ];
 
+const HERO_PRODUCTS = [
+  {
+    title: "High BP Crusher",
+    subtitle: "Janechuks Mixed Spices",
+    desc: "100% Natural solution for High BP, Hypertension, Sugar & Insomnia.",
+    badge: "100% Natural",
+    image: "/product-high-bp-crusher.jpg",
+    linkMsg: "Hello Kedam Chemist, I want to order High BP Crusher",
+  },
+  {
+    title: "Belly Shrinking Spices",
+    subtitle: "Janechuks Mixed Spices",
+    desc: "Reduce belly & bloating fast with natural Senna & Black Seed blend.",
+    badge: "Flat Tummy",
+    image: "/product-belly-shrinking.jpg",
+    linkMsg: "Hello Kedam Chemist, I want to order Belly Shrinking Spices",
+  },
+  {
+    title: "JCMS Women's Health Tea",
+    subtitle: "Janechuks Spices Reset",
+    desc: "Natural relief for PCOS, Fibroids, Cysts & Irregular Periods.",
+    badge: "Body Reset",
+    image: "/product-jcms-womens-health.jpg",
+    linkMsg: "Hello Kedam Chemist, I want to order JCMS Women's Health Tea",
+  },
+];
+
 const NAV = ["Home", "Services", "Products", "About", "Contact"];
 const WHATSAPP_NUMBER = "2347038045008";
 const MAPS_API_KEY =
@@ -421,6 +448,15 @@ function CTAButtons({ onNavigate }) {
 function Home({ onNavigate }) {
   const [scrollPct, setScrollPct] = useState(0);
   const [heroParallax, setHeroParallax] = useState(0);
+  const [heroProductIdx, setHeroProductIdx] = useState(0);
+
+  // Auto-cycle through natural product spotlight every 3.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroProductIdx((prev) => (prev + 1) % HERO_PRODUCTS.length);
+    }, 3800);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const cards = document.querySelectorAll(".ps-card");
@@ -450,7 +486,8 @@ function Home({ onNavigate }) {
 
   useEffect(() => {
     const band = document.querySelector(".band");
-    if (!band || typeof IntersectionObserver === "undefined") return undefined;
+    const closer = document.querySelector(".closer");
+    if (typeof IntersectionObserver === "undefined") return undefined;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -459,112 +496,61 @@ function Home({ onNavigate }) {
         }
       });
     }, { threshold: 0.15 });
-    observer.observe(band);
+    if (band) observer.observe(band);
+    if (closer) observer.observe(closer);
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const closer = document.querySelector(".closer");
-    if (!closer || typeof IntersectionObserver === "undefined") return undefined;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    observer.observe(closer);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const closer = document.querySelector(".closer");
-    if (!closer || typeof IntersectionObserver === "undefined") return undefined;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    observer.observe(closer);
-    return () => observer.disconnect();
-  }, []);
+  const activeHeroProduct = HERO_PRODUCTS[heroProductIdx];
 
   return (
     <>
       <div className="scroll-progress" style={{ width: `${scrollPct}%` }} aria-hidden="true"></div>
       <section className="hero">
-        {/* Purple Section: Doctor's heartbeat check tool (Stethoscope showcase) */}
-        <div className="hero__tool-showcase">
-          <div className="hero__tool-stage">
-            <div className="hero__tool-aura hero__tool-aura--1" />
-            <div className="hero__tool-aura hero__tool-aura--2" />
-            <svg
-              className="hero__stethoscope-svg"
-              viewBox="0 0 170 180"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-label="Doctor's Stethoscope for heartbeat and vitals"
-            >
-              <defs>
-                <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#eef4f1" />
-                  <stop offset="50%" stopColor="#ffffff" />
-                  <stop offset="100%" stopColor="#b4c7be" />
-                </linearGradient>
-                <linearGradient id="tubeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#0E5245" />
-                  <stop offset="100%" stopColor="#08372e" />
-                </linearGradient>
-              </defs>
+        {/* Natural Product Spotlight Showcase — Her actual products right away above the fold! */}
+        <div className="hero__tool-showcase hero__product-showcase-box">
+          <div className="hero__product-spotlight-img">
+            <img
+              src={activeHeroProduct.image}
+              alt={activeHeroProduct.title}
+              key={activeHeroProduct.title}
+              className="hero__spotlight-img-active"
+            />
+            <span className="hero__spotlight-badge">{activeHeroProduct.badge}</span>
 
-              {/* Binaural earpieces */}
-              <path d="M48 24 C48 50 64 74 85 82 C106 74 122 50 122 24" stroke="url(#metalGrad)" strokeWidth="6.5" strokeLinecap="round" strokeLinejoin="round" />
-              {/* Ear tips */}
-              <ellipse cx="48" cy="23" rx="5.5" ry="4.5" fill="#0A372E" />
-              <ellipse cx="122" cy="23" rx="5.5" ry="4.5" fill="#0A372E" />
-              {/* Tension spring bar */}
-              <path d="M58 44 Q85 52 112 44" stroke="url(#metalGrad)" strokeWidth="3.6" strokeLinecap="round" />
-              {/* Y-junction connector */}
-              <circle cx="85" cy="82" r="5" fill="#E8A33D" />
-
-              {/* Flexible tubing */}
-              <path d="M85 82 V102 C85 134 62 152 38 152 C20 152 14 136 14 120 C14 100 28 85 56 85 H104" stroke="url(#tubeGrad)" strokeWidth="8.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M85 85 V102 C85 132 63 149 40 149 C24 149 17 136 17 120 C17 102 29 88 56 88 H104" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-
-              {/* Chestpiece (Bell and Diaphragm) with animated ECG heartbeat pulse */}
-              <g transform="translate(126, 85)">
-                <circle cx="0" cy="0" r="25" fill="#0A372E" stroke="#E8A33D" strokeWidth="4" />
-                <circle cx="0" cy="0" r="18" fill="#0E5245" stroke="#ffffff" strokeWidth="1.2" />
-                <circle cx="0" cy="0" r="15" fill="#DCECE2" />
-                {/* Heartbeat pulse rhythm inside diaphragm */}
-                <path className="heartbeat-pulse-path" d="M-11 0 H-6 L-3.5 -7 L0 7 L2.5 -4 L5 0 H11" stroke="#0E5245" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              </g>
-            </svg>
+            {/* Dots to manually select product */}
+            <div className="hero__spotlight-dots">
+              {HERO_PRODUCTS.map((p, idx) => (
+                <button
+                  key={p.title}
+                  className={`spotlight-dot ${idx === heroProductIdx ? "is-active" : ""}`}
+                  onClick={() => setHeroProductIdx(idx)}
+                  title={p.title}
+                  aria-label={`Select ${p.title}`}
+                />
+              ))}
+            </div>
           </div>
 
           <div className="hero__tool-info">
             <div className="hero__tool-heading">
-              <span className="hero__tool-icon">🩺</span>
+              <span className="hero__tool-icon">🌿</span>
               <div>
-                <strong>Heartbeat &amp; Vitals Auscultation</strong>
-                <small>Stethoscope diagnostics by a registered nurse</small>
+                <strong>{activeHeroProduct.title}</strong>
+                <small>{activeHeroProduct.subtitle}</small>
               </div>
             </div>
-            <div className="hero__tool-vitals">
-              <span className="vitals-heart">♥</span>
-              <span className="vitals-bpm">72 BPM</span>
-              <span className="vitals-status">Steady Heartbeat</span>
-            </div>
             <p className="hero__tool-text">
-              Full chest auscultation, blood pressure testing and cardiovascular monitoring done in-store or at your home.
+              {activeHeroProduct.desc}
             </p>
-            <button className="hero__tool-action" onClick={() => onNavigate("Services")}>
-              Book vitals check <Icon name="arrow" size={14} />
-            </button>
+            <a
+              className="hero__tool-action"
+              href={whatsappUrl(activeHeroProduct.linkMsg)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Order on WhatsApp <Icon name="arrow" size={14} />
+            </a>
           </div>
         </div>
 
@@ -596,21 +582,21 @@ function Home({ onNavigate }) {
           </div>
         </div>
 
-        <div className="hero__art" aria-hidden="true" style={{ transform: `translateY(${heroParallax * 60}px)` }}>
-          <div className="hero__cross" style={{ transform: `translateY(${heroParallax * 40}px) rotate(8deg)` }} />
-          <div className="hero__photo" style={{ transform: `translateY(${heroParallax * 80}px)` }}>
+        <div className="hero__art" aria-hidden="true" style={{ transform: `translateY(${heroParallax * 40}px)` }}>
+          <div className="hero__cross" style={{ transform: `translateY(${heroParallax * 20}px) rotate(8deg)` }} />
+          <div className="hero__photo" style={{ transform: `translateY(${heroParallax * 50}px)` }}>
             <img
-              src="https://images.unsplash.com/photo-1696861286643-341a8d7a79e9?auto=format&fit=crop&w=700&q=80"
-              alt=""
+              src="/product-kedam-store.jpg"
+              alt="Kedam Patent Store interior stocked shelves"
             />
           </div>
           <div className="hero__chip hero__chip--a">
-            <Icon name="pulse" size={16} color="#0E5245" />
-            BP checked in minutes
+            <Icon name="droplet" size={16} color="#0E5245" />
+            100% Natural Herbal Spices
           </div>
           <div className="hero__chip hero__chip--b">
-            <Icon name="baby" size={16} color="#0E5245" />
-            Mother &amp; baby essentials
+            <Icon name="cross" size={16} color="#0E5245" />
+            Authentic Medicine Stocked
           </div>
         </div>
       </section>
@@ -1109,12 +1095,13 @@ export default function App() {
 
         /* ---- NAV ---- */
         .nav {
-          position: sticky; top: 0; z-index: 40;
+          position: sticky; top: 0; z-index: 1000;
           display: flex; align-items: center; justify-content: space-between;
           padding: 14px 5vw;
-          background: rgba(243,245,239,0.92);
-          backdrop-filter: blur(10px);
+          background: rgba(243,245,239,0.96);
+          backdrop-filter: blur(12px);
           border-bottom: 1px solid var(--line);
+          box-shadow: 0 4px 20px rgba(14,82,69,0.06);
         }
         .brand {
           display: flex; align-items: center; gap: 14px;
@@ -1204,13 +1191,13 @@ export default function App() {
         .trust-strip { display: flex; gap: 18px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--line); }
         .trust-strip div { display: flex; align-items: center; gap: 7px; font-size: .82rem; font-weight: 600; color: #33413a; }
 
-        /* Purple section: Doctor's stethoscope showcase */
-        .hero__tool-showcase {
+        /* Natural Product Spotlight Showcase */
+        .hero__product-showcase-box {
           background: linear-gradient(165deg, #ffffff 0%, #f4faf6 55%, #e1efe7 100%);
-          border: 1.5px solid rgba(14, 82, 69, 0.18);
+          border: 1.5px solid rgba(14, 82, 69, 0.22);
           border-radius: 26px;
-          padding: 22px 20px;
-          box-shadow: 0 16px 36px rgba(14, 82, 69, 0.11);
+          padding: 18px;
+          box-shadow: 0 16px 36px rgba(14, 82, 69, 0.12);
           display: flex;
           flex-direction: column;
           gap: 14px;
@@ -1218,63 +1205,70 @@ export default function App() {
           overflow: hidden;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .hero__tool-showcase:hover {
+        .hero__product-showcase-box:hover {
           transform: translateY(-4px);
-          box-shadow: 0 22px 44px rgba(14, 82, 69, 0.16);
+          box-shadow: 0 22px 44px rgba(14, 82, 69, 0.18);
         }
-        .hero__tool-stage {
+        .hero__product-spotlight-img {
           position: relative;
           width: 100%;
-          height: 185px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: radial-gradient(circle at center, #ffffff 40%, #eaf4ee 100%);
-          border-radius: 20px;
-          border: 1px solid rgba(14, 82, 69, 0.1);
+          height: 190px;
+          border-radius: 18px;
           overflow: hidden;
+          background: #0e5245;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
-        .hero__tool-aura {
-          position: absolute;
-          border-radius: 50%;
-          pointer-events: none;
-        }
-        .hero__tool-aura--1 {
-          width: 130px;
-          height: 130px;
-          background: radial-gradient(circle, rgba(232, 163, 61, 0.18) 0%, transparent 70%);
-          top: 30px;
-          right: 15px;
-          animation: auraPulse 4s ease-in-out infinite alternate;
-        }
-        .hero__tool-aura--2 {
-          width: 160px;
-          height: 160px;
-          background: radial-gradient(circle, rgba(14, 82, 69, 0.12) 0%, transparent 70%);
-          bottom: -25px;
-          left: -15px;
-        }
-        @keyframes auraPulse {
-          from { transform: scale(0.9); opacity: 0.6; }
-          to { transform: scale(1.15); opacity: 1; }
-        }
-        .hero__stethoscope-svg {
+        .hero__spotlight-img-active {
           width: 100%;
           height: 100%;
-          max-height: 175px;
+          object-fit: cover;
           display: block;
-          position: relative;
+          animation: spotlightFade 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        @keyframes spotlightFade {
+          from { opacity: 0.4; transform: scale(1.06); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .hero__spotlight-badge {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background: var(--accent);
+          color: var(--ink);
+          font-size: 0.68rem;
+          font-weight: 700;
+          padding: 4px 10px;
+          border-radius: 999px;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.2);
           z-index: 2;
         }
-        .heartbeat-pulse-path {
-          stroke-dasharray: 40;
-          stroke-dashoffset: 40;
-          animation: heartbeatTrace 2.2s ease-in-out infinite;
+        .hero__spotlight-dots {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          display: flex;
+          gap: 6px;
+          z-index: 2;
+          background: rgba(0,0,0,0.45);
+          backdrop-filter: blur(6px);
+          padding: 5px 8px;
+          border-radius: 999px;
         }
-        @keyframes heartbeatTrace {
-          0% { stroke-dashoffset: 40; opacity: 0.3; }
-          40% { stroke-dashoffset: 0; opacity: 1; }
-          80%, 100% { stroke-dashoffset: -40; opacity: 0.3; }
+        .spotlight-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: none;
+          padding: 0;
+          background: rgba(255,255,255,0.4);
+          cursor: pointer;
+          transition: background 0.25s ease, transform 0.25s ease;
+        }
+        .spotlight-dot.is-active {
+          background: var(--accent);
+          transform: scale(1.3);
         }
         .hero__tool-info {
           display: flex;
