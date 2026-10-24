@@ -142,7 +142,7 @@ const SERVICES = [
     label: "Home Treatment",
     tag: "Nurse Visits",
     desc: "Personalized routine medical treatment and monitoring in the comfort of your home.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
+    image: "/product-nurse-portrait.jpg",
     imageAlt: "Registered nurse treating a patient during a home visit",
   },
   {
@@ -150,23 +150,23 @@ const SERVICES = [
     label: "BP Checkup",
     tag: "Vitals & Heart",
     desc: "Rapid, accurate blood pressure testing, heart health monitoring & vitals tracking.",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
-    imageAlt: "Nurse checking blood pressure and listening with a stethoscope",
+    image: "/product-high-bp-crusher.jpg",
+    imageAlt: "High BP Crusher and heart health check",
   },
   {
     icon: "droplet",
     label: "Sugar Level Checkup",
     tag: "Diabetes Care",
     desc: "Fasting and random blood glucose testing with immediate, clear guidance.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
-    imageAlt: "Blood glucose monitoring equipment and diabetes checkup",
+    image: "/product-belly-shrinking.jpg",
+    imageAlt: "Natural health check and glucose monitoring",
   },
   {
     icon: "cross",
     label: "Medicine Store",
     tag: "Pharmacy",
     desc: "Essential prescription medication and trusted over-the-counter remedies dispensed.",
-    image: "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=600&q=80",
+    image: "/product-kedam-store.jpg",
     imageAlt: "Shelves of authentic medicines at Kedam Chemist",
   },
   {
@@ -174,7 +174,7 @@ const SERVICES = [
     label: "Medical Equipment",
     tag: "Diagnostics",
     desc: "High-grade BP apparatus, digital glucometers, thermometers and scales.",
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+    image: "/product-operating-room.jpg",
     imageAlt: "Clinical medical diagnostics and healthcare monitoring equipment",
   },
   {
@@ -182,7 +182,7 @@ const SERVICES = [
     label: "Wound Dressing",
     tag: "Sterile Care",
     desc: "Sterile wound cleaning, postoperative dressing and compassionate healing care.",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=600&q=80",
+    image: "/product-jcms-womens-health.jpg",
     imageAlt: "Sterile clinical care and nursing wound dressing",
   },
   {
@@ -190,7 +190,7 @@ const SERVICES = [
     label: "Mother & Baby Care",
     tag: "Pediatrics",
     desc: "Nourishment, maternity care pads, gentle infant essentials and toiletries.",
-    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=600&q=80",
+    image: "/product-wonder-home-calendar.jpg",
     imageAlt: "Loving mother and healthy baby essentials care",
   },
 ];
@@ -202,7 +202,7 @@ const SERVICE_DETAILS = [
     body:
       "A registered nurse comes to you for routine treatment and monitoring, so you don't have to sit in a queue when you're unwell.",
     points: ["Nurse-led home visits", "Booked by phone, same-day where possible", "Suited to elderly and post-surgery patients"],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80",
+    image: "/product-nurse-portrait.jpg",
     imageAlt: "Nurse speaking with a patient at home",
   },
   {
@@ -211,7 +211,7 @@ const SERVICE_DETAILS = [
     body:
       "Quick, accurate blood pressure readings for anyone managing hypertension or checking in on their heart health.",
     points: ["Walk-in or home visit", "Reading explained in plain language", "Regular monitoring plans available"],
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=700&q=80",
+    image: "/product-high-bp-crusher.jpg",
     imageAlt: "Nurse checking a patient's blood pressure",
   },
   {
@@ -220,7 +220,7 @@ const SERVICE_DETAILS = [
     body:
       "Blood glucose testing for diabetic and pre-diabetic clients, with guidance on what the numbers mean for daily life.",
     points: ["Fasting or random glucose tests", "Result recorded for your next visit", "Referral advice when needed"],
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=700&q=80",
+    image: "/product-belly-shrinking.jpg",
     imageAlt: "Healthcare professional preparing a health check",
   },
   {
@@ -229,7 +229,7 @@ const SERVICE_DETAILS = [
     body:
       "Wound dressing and recovery support after surgery, handled with the same care as a hospital ward — at home.",
     points: ["Sterile wound dressing", "Healing progress checked visit to visit", "Guidance for family caregivers"],
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=700&q=80",
+    image: "/product-jcms-womens-health.jpg",
     imageAlt: "Nurse providing careful home care",
   },
 ];
@@ -262,7 +262,7 @@ const PRODUCTS = [
     imageAlt: "Close-up of diabetes monitoring equipment",
     gallery: [
       "/product-operating-room.jpg",
-      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=900&q=80",
+      "/product-kedam-store.jpg",
     ],
   },
   {
@@ -606,8 +606,8 @@ function Home({ onNavigate }) {
       <section className="band">
         <div className="band__photo">
           <img
-            src="https://images.unsplash.com/photo-1624625021542-41a4ff97c025?auto=format&fit=crop&w=900&q=80"
-            alt="Close-up of diabetes monitoring supplies on a wooden table"
+            src="/product-high-bp-crusher.jpg"
+            alt="Janechuks Natural Mixed Spices High BP Crusher"
           />
         </div>
         <div className="band__text">
@@ -752,8 +752,8 @@ function Home({ onNavigate }) {
       <section className="band">
         <div className="band__photo">
           <img
-            src="https://images.unsplash.com/photo-1624625021542-41a4ff97c025?auto=format&fit=crop&w=900&q=80"
-            alt="Close-up of diabetes monitoring supplies on a wooden table"
+            src="/product-high-bp-crusher.jpg"
+            alt="Janechuks Natural Mixed Spices High BP Crusher"
           />
         </div>
         <div className="band__text">
@@ -1070,6 +1070,7 @@ export default function App() {
           background: var(--paper);
           min-height: 100vh;
           -webkit-font-smoothing: antialiased;
+          overflow-x: hidden;
         }
         .kedam * { box-sizing: border-box; }
         .scroll-progress {
@@ -1949,45 +1950,50 @@ export default function App() {
           .hero {
             grid-template-columns: 1fr 1fr;
           }
-          .hero__tool-showcase {
+          .hero__product-showcase-box {
             grid-column: span 2;
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 20px;
-            align-items: center;
-          }
-          .hero__tool-stage {
-            height: 160px;
           }
         }
         @media (max-width: 880px) {
           .nav__links { display: none; }
           .nav__menu { display: inline-flex; }
-          .hero, .band, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-          .hero__tool-showcase {
-            grid-column: span 1;
+          .hero {
+            grid-template-columns: 1fr;
             display: flex;
             flex-direction: column;
+            gap: 28px;
+            padding: 24px 5vw 32px;
           }
-          .hero__tool-stage {
-            height: 180px;
+          .hero__product-showcase-box {
+            order: -1; /* Product spotlight appears FIRST at top of phone screen! */
+            width: 100%;
           }
+          .hero__art {
+            height: 280px;
+            width: 100%;
+          }
+          .band, .about-grid, .contact-grid { grid-template-columns: 1fr; }
           .service-grid { grid-template-columns: 1fr; }
           .product-row { grid-template-columns: 1fr; }
           .product-row__media { height: 200px; }
           .booking-panel { grid-template-columns: 1fr; }
         }
         @media (max-width: 520px) {
-          .nav { padding: 12px 4vw; }
-          .brand__mark { width: 42px; height: 42px; border-radius: 12px; }
-          .brand__word { font-size: 1.3rem; }
-          .brand__tagline { font-size: 0.68rem; }
+          .nav { padding: 10px 4vw; }
+          .brand__mark { width: 40px; height: 40px; border-radius: 10px; }
+          .brand__word { font-size: 1.25rem; }
+          .brand__tagline { font-size: 0.64rem; }
           .brand__badge { display: none; }
-          .nav__phone { padding: 8px 12px; font-size: .78rem; }
+          .nav__phone { padding: 8px 12px; font-size: .75rem; }
           .hero, .band, .page { padding-left: 4vw; padding-right: 4vw; }
-          .hero__art { height: 300px; }
-          .booking-panel { padding: 22px; }
+          .hero h1 { font-size: 1.75rem; }
+          .hero__product-spotlight-img { height: 210px; }
+          .hero__art { height: 250px; }
+          .ps-card { height: 320px; }
+          .ps-name { font-size: 1.2rem; }
+          .booking-panel { padding: 18px; }
           .booking-form { grid-template-columns: 1fr; }
+          .btn { width: 100%; justify-content: center; min-height: 46px; }
         }
       `}</style>
 
