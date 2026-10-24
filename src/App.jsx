@@ -1957,6 +1957,43 @@ export default function App() {
         @media (max-width: 880px) {
           .nav__links { display: none; }
           .nav__menu { display: inline-flex; }
+          .nav {
+            padding: 10px 4vw;
+            gap: 10px;
+          }
+          .brand {
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
+          }
+          .brand__mark {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+          }
+          .brand__word {
+            font-size: 1.1rem;
+            line-height: 1.1;
+          }
+          .brand__meta {
+            flex-wrap: wrap;
+            gap: 4px;
+          }
+          .brand__badge {
+            font-size: 0.6rem;
+            padding: 2px 6px;
+          }
+          .brand__tagline {
+            font-size: 0.62rem;
+          }
+          .nav__menu {
+            font-size: 0.8rem;
+            padding: 8px 12px;
+          }
+          .nav__phone {
+            font-size: 0.78rem;
+            padding: 8px 14px;
+          }
           .hero {
             grid-template-columns: 1fr;
             display: flex;
@@ -1979,12 +2016,13 @@ export default function App() {
           .booking-panel { grid-template-columns: 1fr; }
         }
         @media (max-width: 520px) {
-          .nav { padding: 10px 4vw; }
-          .brand__mark { width: 40px; height: 40px; border-radius: 10px; }
-          .brand__word { font-size: 1.25rem; }
-          .brand__tagline { font-size: 0.64rem; }
+          .nav { padding: 8px 3vw; gap: 8px; }
+          .brand__mark { width: 36px; height: 36px; }
+          .brand__word { font-size: 1rem; }
+          .brand__tagline { font-size: 0.58rem; }
           .brand__badge { display: none; }
-          .nav__phone { padding: 8px 12px; font-size: .75rem; }
+          .nav__menu { font-size: 0.75rem; padding: 7px 10px; }
+          .nav__phone { font-size: 0.72rem; padding: 7px 11px; }
           .hero, .band, .page { padding-left: 4vw; padding-right: 4vw; }
           .hero h1 { font-size: 1.75rem; }
           .hero__product-spotlight-img { height: 210px; }
