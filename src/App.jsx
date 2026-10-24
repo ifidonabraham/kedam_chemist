@@ -243,11 +243,11 @@ const PRODUCTS = [
     blurb: "Prescription and over-the-counter medicines, dispensed with proper guidance.",
     items: ["Prescription medicine", "Over-the-counter drugs", "Common household remedies"],
     availability: "Ask what is in stock",
-    image: "/medicine-store-main.jpg",
+    image: "/product-kedam-store.jpg",
     imageAlt: "Shelves of medicine at Kedam Chemist Patent Store",
     gallery: [
+      "/product-kedam-store.jpg",
       "/medicine-store-main.jpg",
-      "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=900&q=80",
     ],
   },
   {
@@ -258,11 +258,10 @@ const PRODUCTS = [
     blurb: "Take health monitoring home with equipment sold and explained in person.",
     items: ["BP apparatus", "Glucometers", "Weighing scales"],
     availability: "Guidance included",
-    image:
-      "https://images.unsplash.com/photo-1624625021542-41a4ff97c025?auto=format&fit=crop&w=900&q=80",
+    image: "/product-operating-room.jpg",
     imageAlt: "Close-up of diabetes monitoring equipment",
     gallery: [
-      "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=900&q=80",
+      "/product-operating-room.jpg",
       "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=900&q=80",
     ],
   },
@@ -274,12 +273,11 @@ const PRODUCTS = [
     blurb: "Everyday essentials for mother and child, always in stock.",
     items: ["Baby care", "Maternity pads", "Wipes and toiletries"],
     availability: "Everyday essentials",
-    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80",
+    image: "/mother-baby-calendar.jpg",
     imageAlt: "Mother holding a baby",
     gallery: [
       "/mother-baby-calendar.jpg",
-      "https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=900&q=80",
+      "/product-wonder-home-calendar.jpg",
     ],
   },
   {
@@ -290,13 +288,12 @@ const PRODUCTS = [
     blurb: "Natural solutions for chronic conditions and wellness support.",
     items: ["Janechuks Mixed Spices", "Women's Health Formula", "High BP Crusher", "Belly Shrinking Spices"],
     availability: "100% Natural products",
-    image: "/janechuks-mixed-spices.jpg",
+    image: "/product-high-bp-crusher.jpg",
     imageAlt: "Janechuks Mixed Spices for women's health",
     gallery: [
-      "/janechuks-mixed-spices.jpg",
-      "/janechuks-womens-health.jpg",
-      "/high-bp-crusher.jpg",
-      "/belly-shrinking-spices.jpg",
+      "/product-high-bp-crusher.jpg",
+      "/product-jcms-womens-health.jpg",
+      "/product-belly-shrinking.jpg",
     ],
   },
 ];
@@ -422,8 +419,83 @@ function CTAButtons({ onNavigate }) {
    PAGES
 --------------------------------------------------------- */
 function Home({ onNavigate }) {
+  const [scrollPct, setScrollPct] = useState(0);
+  const [heroParallax, setHeroParallax] = useState(0);
+
+  useEffect(() => {
+    const cards = document.querySelectorAll(".ps-card");
+    if (!cards.length || typeof IntersectionObserver === "undefined") return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    cards.forEach((c) => observer.observe(c));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const pct = Math.min(100, Math.round((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100));
+      setScrollPct(pct);
+      setHeroParallax(Math.min(h.scrollTop / 400, 1));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const band = document.querySelector(".band");
+    if (!band || typeof IntersectionObserver === "undefined") return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(band);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const closer = document.querySelector(".closer");
+    if (!closer || typeof IntersectionObserver === "undefined") return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(closer);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const closer = document.querySelector(".closer");
+    if (!closer || typeof IntersectionObserver === "undefined") return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(closer);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
+      <div className="scroll-progress" style={{ width: `${scrollPct}%` }} aria-hidden="true"></div>
       <section className="hero">
         {/* Purple Section: Doctor's heartbeat check tool (Stethoscope showcase) */}
         <div className="hero__tool-showcase">
@@ -524,9 +596,9 @@ function Home({ onNavigate }) {
           </div>
         </div>
 
-        <div className="hero__art" aria-hidden="true">
-          <div className="hero__cross" />
-          <div className="hero__photo">
+        <div className="hero__art" aria-hidden="true" style={{ transform: `translateY(${heroParallax * 60}px)` }}>
+          <div className="hero__cross" style={{ transform: `translateY(${heroParallax * 40}px) rotate(8deg)` }} />
+          <div className="hero__photo" style={{ transform: `translateY(${heroParallax * 80}px)` }}>
             <img
               src="https://images.unsplash.com/photo-1696861286643-341a8d7a79e9?auto=format&fit=crop&w=700&q=80"
               alt=""
@@ -544,6 +616,152 @@ function Home({ onNavigate }) {
       </section>
 
       <Marquee onNavigate={onNavigate} />
+
+      <section className="band">
+        <div className="band__photo">
+          <img
+            src="https://images.unsplash.com/photo-1624625021542-41a4ff97c025?auto=format&fit=crop&w=900&q=80"
+            alt="Close-up of diabetes monitoring supplies on a wooden table"
+          />
+        </div>
+        <div className="band__text">
+          <SectionHeading
+            title="Chronic care, checked on regularly"
+            lede="Hypertension and diabetes need steady watching, not just a single visit. Come in — or ask for a home visit — for BP and sugar level checks you can keep coming back to."
+          />
+          <ul className="check-list">
+            <li>Blood pressure monitoring for hypertensive clients</li>
+            <li>Blood glucose testing, fasting or random</li>
+            <li>Results kept on file for your next visit</li>
+          </ul>
+          <button className="btn btn--solid" onClick={() => onNavigate("Services")}>
+            See how it works <Icon name="arrow" size={16} />
+          </button>
+        </div>
+      </section>
+
+      {/* ---- PRODUCT SHOWCASE ---- */}
+      <section className="product-showcase">
+        <div className="ps-heading">
+          <span className="ps-new-badge">✨ New Arrivals</span>
+          <p className="kicker">Featured Products</p>
+          <h2>Natural solutions, right here in store</h2>
+          <p className="lede">100% natural herbal remedies and trusted pharmacy essentials — ask what is in stock and we'll explain how to use it.</p>
+        </div>
+        <div className="ps-grid">
+          <article className="ps-card" onClick={() => onNavigate("Products")}>
+            <div className="ps-badge">Heart Health</div>
+            <div className="ps-card__img"><img src="/product-high-bp-crusher.jpg" alt="High BP Crusher natural spice blend" loading="lazy" /></div>
+            <div className="ps-card__overlay"></div>
+            <div className="ps-card__body">
+              <div className="ps-brand">Janechuks Mixed Spices</div>
+              <h3 className="ps-name">High BP Crusher</h3>
+              <p className="ps-blurb">100% natural solution for high blood pressure, hypertension, insomnia and more.</p>
+              <div className="ps-chips">
+                <span className="ps-chip">100% Natural</span>
+                <span className="ps-chip">Ginger</span>
+                <span className="ps-chip">Cinnamon</span>
+              </div>
+              <a className="ps-action" href={whatsappUrl("Hello Kedam Chemist, I would like to order the High BP Crusher.")} target="_blank" rel="noreferrer">
+                Order now <Icon name="arrow" size={14} />
+              </a>
+            </div>
+          </article>
+
+          <article className="ps-card" onClick={() => onNavigate("Products")}>
+            <div className="ps-badge">Weight Care</div>
+            <div className="ps-card__img"><img src="/product-belly-shrinking.jpg" alt="Belly Shrinking Spices tea" loading="lazy" /></div>
+            <div className="ps-card__overlay"></div>
+            <div className="ps-card__body">
+              <div className="ps-brand">Janechuks Mixed Spices</div>
+              <h3 className="ps-name">Belly Shrinking Spices</h3>
+              <p className="ps-blurb">Reduce bloating, cleanse your system and support a flat tummy — no chemicals.</p>
+              <div className="ps-chips">
+                <span className="ps-chip">100% Natural</span>
+                <span className="ps-chip">Senna Leaf</span>
+                <span className="ps-chip">Habbatu Sauda</span>
+              </div>
+              <a className="ps-action" href={whatsappUrl("Hello Kedam Chemist, I would like to order the Belly Shrinking Spices.")} target="_blank" rel="noreferrer">
+                Order now <Icon name="arrow" size={14} />
+              </a>
+            </div>
+          </article>
+
+          <article className="ps-card" onClick={() => onNavigate("Products")}>
+            <div className="ps-badge">Women's Health</div>
+            <div className="ps-card__img"><img src="/product-jcms-womens-health.jpg" alt="JCMS Tea for women's health reset" loading="lazy" /></div>
+            <div className="ps-card__overlay"></div>
+            <div className="ps-card__body">
+              <div className="ps-brand">Janechuks Mixed Spices</div>
+              <h3 className="ps-name">JCMS Tea</h3>
+              <p className="ps-blurb">Say goodbye to irregular periods, PCOS, fibroids and cysts — your body deserves a reset.</p>
+              <div className="ps-chips">
+                <span className="ps-chip">PCOS</span>
+                <span className="ps-chip">Fibroids</span>
+                <span className="ps-chip">Cysts</span>
+              </div>
+              <a className="ps-action" href={whatsappUrl("Hello Kedam Chemist, I would like to order the JCMS Tea.")} target="_blank" rel="noreferrer">
+                Order now <Icon name="arrow" size={14} />
+              </a>
+            </div>
+          </article>
+
+          <article className="ps-card" onClick={() => onNavigate("Products")}>
+            <div className="ps-badge">Store Promo</div>
+            <div className="ps-card__img"><img src="/product-wonder-home-calendar.jpg" alt="Wonder Home 2025 calendar" loading="lazy" /></div>
+            <div className="ps-card__overlay"></div>
+            <div className="ps-card__body">
+              <div className="ps-brand">Wonder Home</div>
+              <h3 className="ps-name">2025 Calendar</h3>
+              <p className="ps-blurb">Seasonal calendar gift with in-store purchases — wonderhome wonderland.</p>
+              <div className="ps-chips">
+                <span className="ps-chip">2025</span>
+                <span className="ps-chip">Free Gift</span>
+              </div>
+              <a className="ps-action" href={whatsappUrl("Hello Kedam Chemist, I would like to know about the Wonder Home calendar.")} target="_blank" rel="noreferrer">
+                Ask about this <Icon name="arrow" size={14} />
+              </a>
+            </div>
+          </article>
+
+          <article className="ps-card" onClick={() => onNavigate("About")}>
+            <div className="ps-badge">Our Pharmacist</div>
+            <div className="ps-card__img"><img src="/product-nurse-portrait.jpg" alt="Registered nurse at Kedam Chemist" loading="lazy" /></div>
+            <div className="ps-card__overlay"></div>
+            <div className="ps-card__body">
+              <div className="ps-brand">Kedam Chemist</div>
+              <h3 className="ps-name">Nurse-Led Care</h3>
+              <p className="ps-blurb">Every checkup, dressing and consultation carries professional nursing oversight.</p>
+              <div className="ps-chips">
+                <span className="ps-chip">Registered</span>
+                <span className="ps-chip">Trusted</span>
+              </div>
+              <a className="ps-action" href={whatsappUrl("Hello Kedam Chemist, I would like to speak with the nurse.")} target="_blank" rel="noreferrer">
+                Ask about care <Icon name="arrow" size={14} />
+              </a>
+            </div>
+          </article>
+
+          <article className="ps-card" onClick={() => onNavigate("Products")}>
+            <div className="ps-badge">In Store</div>
+            <div className="ps-card__img"><img src="/product-kedam-store.jpg" alt="Kedam Patent Store medicine shelves" loading="lazy" /></div>
+            <div className="ps-card__overlay"></div>
+            <div className="ps-card__body">
+              <div className="ps-brand">Kedam Patent Store</div>
+              <h3 className="ps-name">Your Health, Our Priority</h3>
+              <p className="ps-blurb">Full shelves of prescription and over-the-counter medicines, always in stock.</p>
+              <div className="ps-chips">
+                <span className="ps-chip">Amatem Forte</span>
+                <span className="ps-chip">Vitamins</span>
+                <span className="ps-chip">Syrups</span>
+              </div>
+              <a className="ps-action" href={whatsappUrl("Hello Kedam Chemist, what is in stock today?")} target="_blank" rel="noreferrer">
+                Check stock <Icon name="arrow" size={14} />
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <section className="band">
         <div className="band__photo">
@@ -868,6 +1086,16 @@ export default function App() {
           -webkit-font-smoothing: antialiased;
         }
         .kedam * { box-sizing: border-box; }
+        .scroll-progress {
+          position: fixed;
+          top: 0; left: 0;
+          height: 3px;
+          width: 0%;
+          background: linear-gradient(90deg, var(--accent), var(--accent-2));
+          z-index: 9999;
+          transition: width 0.1s linear;
+          box-shadow: 0 0 12px rgba(232,163,61,0.5);
+        }
         .kedam h1, .kedam h2, .kedam h3 {
           font-family: 'Fraunces', serif;
           font-weight: 600;
@@ -1161,12 +1389,29 @@ export default function App() {
           margin-top: 14px;
           border-top: 1px solid rgba(255, 255, 255, 0.08);
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          position: relative;
+        }
+        .marquee::before, .marquee::after {
+          content: '';
+          position: absolute;
+          top: 0; bottom: 0;
+          width: 60px;
+          z-index: 2;
+          pointer-events: none;
+        }
+        .marquee::before {
+          left: 0;
+          background: linear-gradient(90deg, #0e5245, transparent);
+        }
+        .marquee::after {
+          right: 0;
+          background: linear-gradient(270deg, #0e5245, transparent);
         }
         .marquee__track {
           display: flex;
           gap: 20px;
           width: max-content;
-          animation: scrollCards 38s linear infinite;
+          animation: scrollCards 32s linear infinite;
         }
         .marquee:hover .marquee__track {
           animation-play-state: paused;
@@ -1280,7 +1525,10 @@ export default function App() {
           padding: 70px 6vw; max-width: 1280px; margin: 0 auto;
         }
         .band__photo { border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(14,82,69,.14); }
-        .band__photo img { width: 100%; height: 340px; object-fit: cover; display: block; }
+        .band__photo img { width: 100%; height: 340px; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(.2,.8,.2,1), filter 0.4s ease; }
+        .band:hover .band__photo img { transform: scale(1.04) rotate(-0.5deg); filter: saturate(1.08); }
+        .band__text { opacity: 0; transform: translateX(40px); transition: opacity 0.9s cubic-bezier(.2,.8,.2,1), transform 0.9s cubic-bezier(.2,.8,.2,1); }
+        .band.is-visible .band__text { opacity: 1; transform: translateX(0); }
         .check-list li { display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; color: #33413a; }
         .check-list li::before { content: '+'; color: var(--accent); font-weight: 700; font-family: 'Fraunces', serif; }
 
@@ -1288,10 +1536,330 @@ export default function App() {
           background: var(--deep-2); color: #fff;
           display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
           padding: 48px 6vw; margin-top: 10px;
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 0.9s cubic-bezier(.2,.8,.2,1), transform 0.9s cubic-bezier(.2,.8,.2,1);
+          position: relative;
+          overflow: hidden;
         }
-        .closer h2 { color: #fff; font-size: 1.7rem; }
-        .closer p { color: rgba(255,255,255,.75); margin: 0; }
-        .closer__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .closer.is-visible { opacity: 1; transform: translateY(0); }
+        .closer::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 20% 50%, rgba(232,163,61,0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 50%, rgba(14,82,69,0.25) 0%, transparent 50%);
+          animation: closerGlow 6s ease-in-out infinite alternate;
+          pointer-events: none;
+        }
+        @keyframes closerGlow {
+          0% { opacity: 0.6; }
+          100% { opacity: 1; }
+        }
+        .closer h2 { color: #fff; font-size: 1.7rem; position: relative; z-index: 1; }
+        .closer p { color: rgba(255,255,255,.75); margin: 0; position: relative; z-index: 1; }
+        .closer__actions { display: flex; gap: 14px; flex-wrap: wrap; position: relative; z-index: 1; }
+        .closer__actions .btn { transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+        .closer__actions .btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        .closer__actions .btn--whatsapp { animation: whatsappPulse 2s ease-in-out infinite; }
+        @keyframes whatsappPulse {
+          0%, 100% { box-shadow: 0 4px 14px rgba(37,211,102,0.3); }
+          50% { box-shadow: 0 4px 22px rgba(37,211,102,0.5); }
+        }
+        .closer__call { animation: phoneRing 2.5s ease-in-out infinite; }
+        @keyframes phoneRing {
+          0%, 100% { transform: rotate(0); }
+          10% { transform: rotate(-15deg); }
+          20% { transform: rotate(15deg); }
+          30% { transform: rotate(-10deg); }
+          40% { transform: rotate(10deg); }
+          50%, 100% { transform: rotate(0); }
+        }
+
+        /* ---- PRODUCT SHOWCASE ---- */
+        .product-showcase {
+          padding: 84px 6vw;
+          background: linear-gradient(180deg, #fbf7f0 0%, #f4efe5 100%);
+          position: relative;
+          overflow: hidden;
+        }
+        .product-showcase::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+          opacity: 0.6;
+        }
+        .product-showcase::after {
+          content: '';
+          position: absolute;
+          top: -120px;
+          right: -120px;
+          width: 360px;
+          height: 360px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(232,163,61,0.12) 0%, transparent 70%);
+          animation: floatOrb 8s ease-in-out infinite;
+          pointer-events: none;
+        }
+        @keyframes floatOrb {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(-40px, 30px) scale(1.1); }
+        }
+        .ps-heading {
+          text-align: center;
+          max-width: 760px;
+          margin: 0 auto 56px;
+          position: relative;
+        }
+        .ps-heading .kicker {
+          color: var(--accent-2);
+          margin-bottom: 12px;
+        }
+        .ps-heading h2 {
+          font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+          margin-bottom: 18px;
+          background: linear-gradient(90deg, var(--deep-2), var(--deep), var(--accent-2));
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: textShimmer 4s linear infinite;
+        }
+        @keyframes textShimmer {
+          0% { background-position: 0% center; }
+          100% { background-position: 200% center; }
+        }
+        .ps-heading .lede {
+          margin: 0 auto;
+          color: #526059;
+        }
+        .ps-new-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: var(--accent-2);
+          color: #fff;
+          font-size: 0.72rem;
+          font-weight: 700;
+          padding: 7px 14px;
+          border-radius: 999px;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          margin-bottom: 18px;
+          box-shadow: 0 6px 18px rgba(184,70,47,0.3);
+          animation: badgePulse 2.5s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+          0%, 100% { box-shadow: 0 6px 18px rgba(184,70,47,0.3); }
+          50% { box-shadow: 0 6px 24px rgba(184,70,47,0.5); }
+        }
+        .ps-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
+        .ps-card--span-3 {
+          grid-column: span 3;
+        }
+        .ps-card {
+          border-radius: 24px;
+          overflow: hidden;
+          height: 360px;
+          position: relative;
+          border: 1px solid rgba(14,82,69,0.12);
+          box-shadow: 0 12px 30px rgba(14,82,69,0.08);
+          cursor: pointer;
+          opacity: 0;
+          transform: translateY(60px) scale(0.96);
+          transition: opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.8s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .ps-card.is-visible {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        .ps-card:nth-child(1) { transition-delay: 0ms; }
+        .ps-card:nth-child(2) { transition-delay: 140ms; }
+        .ps-card:nth-child(3) { transition-delay: 280ms; }
+        .ps-card:hover {
+          transform: translateY(-10px) scale(1.02);
+          box-shadow: 0 28px 56px rgba(14,82,69,0.22);
+          border-color: rgba(232,163,61,0.5);
+        }
+        .ps-card__img {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        .ps-card__img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.9s cubic-bezier(.2,.8,.2,1), filter 0.4s ease;
+          filter: saturate(1.05) contrast(1.02);
+        }
+        .ps-card:hover .ps-card__img img {
+          transform: scale(1.12);
+          filter: saturate(1.15) contrast(1.08);
+        }
+        .ps-card__img {
+          position: absolute;
+          inset: 0;
+        }
+        .ps-card__img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s ease;
+        }
+        .ps-card:hover .ps-card__img img {
+          transform: scale(1.06);
+        }
+        .ps-card__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, transparent 30%, rgba(10,55,46,0.94) 100%);
+          z-index: 1;
+        }
+        .ps-badge {
+          position: absolute;
+          top: 16px;
+          left: 16px;
+          background: var(--accent);
+          color: var(--ink);
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding: 6px 12px;
+          border-radius: 999px;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          z-index: 2;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          animation: badgeFloat 3.2s ease-in-out infinite;
+        }
+        @keyframes badgeFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
+        .ps-card__body {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 26px 20px 22px;
+          color: #fff;
+          z-index: 2;
+        }
+        .ps-brand {
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: rgba(255,255,255,0.65);
+          margin-bottom: 4px;
+          opacity: 0;
+          transform: translateY(10px);
+          animation: bodyStagger 0.6s cubic-bezier(.2,.8,.2,1) forwards;
+          animation-delay: 0.45s;
+        }
+        .ps-name {
+          font-family: 'Fraunces', serif;
+          font-size: 1.35rem;
+          font-weight: 700;
+          margin: 0 0 8px;
+          line-height: 1.15;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+          opacity: 0;
+          transform: translateY(10px);
+          animation: bodyStagger 0.6s cubic-bezier(.2,.8,.2,1) forwards;
+          animation-delay: 0.55s;
+        }
+        .ps-blurb {
+          font-size: 0.82rem;
+          line-height: 1.45;
+          color: rgba(255,255,255,0.85);
+          margin: 0 0 14px;
+          opacity: 0;
+          transform: translateY(10px);
+          animation: bodyStagger 0.6s cubic-bezier(.2,.8,.2,1) forwards;
+          animation-delay: 0.65s;
+        }
+        .ps-chips {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+          margin-bottom: 16px;
+          opacity: 0;
+          transform: translateY(10px);
+          animation: bodyStagger 0.6s cubic-bezier(.2,.8,.2,1) forwards;
+          animation-delay: 0.75s;
+        }
+        .ps-chip {
+          background: rgba(255,255,255,0.15);
+          backdrop-filter: blur(4px);
+          color: #fff;
+          font-size: 0.66rem;
+          font-weight: 600;
+          padding: 4px 10px;
+          border-radius: 999px;
+          border: 1px solid rgba(255,255,255,0.18);
+        }
+        .ps-action {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: var(--accent);
+          color: var(--ink);
+          font-weight: 700;
+          font-size: 0.8rem;
+          padding: 9px 16px;
+          border-radius: 999px;
+          text-decoration: none;
+          transition: background 0.2s ease, transform 0.2s ease;
+          box-shadow: 0 6px 16px rgba(232,163,61,0.3);
+          opacity: 0;
+          transform: translateY(10px);
+          animation: bodyStagger 0.6s cubic-bezier(.2,.8,.2,1) forwards;
+          animation-delay: 0.85s;
+        }
+        .ps-action:hover {
+          background: #f0b85e;
+          transform: translateX(2px);
+        }
+        @keyframes bodyStagger {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .ps-card--span-3 {
+          grid-column: span 3;
+        }
+
+        @media (max-width: 880px) {
+          .ps-grid {
+            grid-template-columns: 1fr;
+          }
+          .ps-card--span-3 {
+            grid-column: span 1;
+          }
+          .ps-card {
+            height: 320px;
+          }
+        }
+        @media (max-width: 520px) {
+          .product-showcase {
+            padding: 56px 4vw;
+          }
+          .ps-heading {
+            margin-bottom: 36px;
+          }
+          .ps-card {
+            height: 280px;
+          }
+        }
 
         /* ---- SECTION HEADING ---- */
         .section-heading { max-width: 660px; margin-bottom: 36px; }
